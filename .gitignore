@@ -1,0 +1,11 @@
+*__pycache__
+
+*.cache/
+
+*.pytest_cache/
+
+/dist/
+
+*.ipynb_checkpoints
+
+/examples/data/*csv
