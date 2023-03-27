@@ -1,8 +1,9 @@
 import pandas as pd
 from sklearn.datasets import make_classification
-from tree_binner import TreeBinner 
 import re
 import pytest
+
+from tree_binner import TreeBinner 
 
 def create_test_data():
     X, y = make_classification(n_samples=100, n_features=5, random_state=42)
