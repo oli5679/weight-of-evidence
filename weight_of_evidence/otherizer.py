@@ -19,7 +19,7 @@ class Otherizer(BaseEstimator, TransformerMixin):
         N = len(X)
         for col in X.select_dtypes("object").columns:
             counts = pd.Series(X[col]).value_counts()
-            common_strings = counts[(counts / N) > self.threshold].index
+            common_strings = counts[(counts / N) >= self.threshold].index
             self.common_strings[col] = set(common_strings)
         return self
 
@@ -29,5 +29,5 @@ class Otherizer(BaseEstimator, TransformerMixin):
         """
         X_transformed = pd.DataFrame(X.copy())
         for col, common_strings in self.common_strings.items():
-            X_transformed[col] = np.where(np.isin(col, common_strings), col, "other")
+            X_transformed[col] = np.where(X[col].isin(common_strings), X[col], "other")
         return X_transformed
